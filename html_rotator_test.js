@@ -1,27 +1,6 @@
-//Jaml.register('topRow', function(instructor) {
-//	td(
-//		a({href: instructor.link}
-//			(img {src: instructor.imageLink alt: instructor.name})
-//		)	
-//})
-//
-//Jaml.register('bottomRow', function(instructor) {
-//	td(
-//		a({href: instructor.link}
-//			instructor.name
-//		)
-//})
-//
-//Jaml.register('tables', function(instructors){
-//	table({cls: 'websites-countries'}
-//		tr( 
-//			Jaml.render('topRow', instructors))
-//		tr(
-//			Jaml.render('bottomRow', instructors))
-//	)
-//})
+var INSTRUCTORS_PER_ROW = 4; 
 
-var theInstructors = 
+var INSTRUCTORS = 
 [
     {    name: "Austria - Guthenstein",
         link: "http://www.maitreya.at/index.php?id_seiten=5",
@@ -192,61 +171,49 @@ var theInstructors =
         link: "http://www.zentreasures.com/",
         imageLink: "/images/home/countries/c-edinburgh03.jpg"
     }
-]
+];
+
+Jaml.register('topRow', function(instructor) {
+	td(
+		a({href: instructor.link}
+			(img {src: instructor.imageLink alt: instructor.name})
+		)	
+})
+
+Jaml.register('bottomRow', function(instructor) {
+	td(
+		a({href: instructor.link}
+			instructor.name
+		)
+})
+
+Jaml.register('tables', function(instructors){
+	table({cls: 'websites-countries'}
+		tr( 
+			Jaml.render('topRow', instructors))
+		tr(
+			Jaml.render('bottomRow', instructors))
+	)
+})
 
 var weeksSinceAugust261020 = function () {
 	var milliSecondsInWeek = 604800000
-	var august262010inMillis = 'some number'
+	var august262010inMillis = 99999999999999999999999999999999999999999999999999999999
 	var now = getTime()
 	return Math.abs(now - august262010inMillis) / milliSecondsInWeek
 }
 
-var rotateInstructors = function(instructors) {
-	return instructors
+var generateInstructorTablesFor = function(instructors) {
+	var rows = partition(instructors, INSTRUCTORS_PER_ROW)
+	var rowsToShift = weeksSinceAugust261020()
+	var rotated = rotate(instructors, INSTRUCTORS_PER_ROW * rowsToShift)
+	return Jaml.render(rotated))
 }
 
-var instructorRowToHtml = function(instructorRow) {
-	return "X"		
-}
-
-var partitionIntoRows = function(instructors) {
-//	var rowsHtml = "<table class=\"websites-countries\">"
-//	var i
-//	for(i = 0; i < 42; i += 1) {
-//		var j = 0	
-//		var newRow	
-//		if(j == 0) {
-//			newRow = []
-//		}
-//	    newRow.push(instructor[i])	
-//		if (j == 3) {
-//			rowsHtml += instructorRowToHtml(newRow)
-//		}
-			
-//		j = (j + 1) % 4	
-	}
-//	return rowsHtml += "<\table>\n"
-}
-
-var instructorsToHtml = function(instructors){	
-//	var html = ""
-//	var i
-//	for (i=0; i < 42; i += 1) {
-//		html += "<p>" + instructors[i].name + "</p>"
-//	}
-//	return html
-
-//	return partitionIntoRows(instructors)
-	return "goat!!!!!!"
-}
-
-var generateInstructorTables = function() {
-	return instructorsToHtml(rotateInstructors(theInstructors));
-}
-
-var replaceInstructorTables = function() {
-	$("table.websites-countries:first").before("HI")
-	$("table.websites-countries").remove()	
+var replaceInstructorTablesWith = function(instructors) {
+	var instructorTables = generateInstructorTablesFor(instructors)
+	$("table.websites-countries:first").before(instructorTables);
+	$("table.websites-countries").remove();	
 }
 
 var insertNavigation = function() {
@@ -317,7 +284,7 @@ var makeSubNavsDynamic = function() {
 var applyAllJavascript = function() {
 	insertNavigation();
 	makeSubNavsDynamic();
-	replaceInstructorTables();
+	replaceInstructorTablesWith(INSTRUCTORS);
 }
 
 $(document).ready(applyAllJavascript);
