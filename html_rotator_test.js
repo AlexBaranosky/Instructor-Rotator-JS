@@ -1,6 +1,6 @@
-var INSTRUCTORS_PER_ROW = 4; 
+var INSTRUCTORS_PER_ROW = 4;
 
-var INSTRUCTORS = 
+var INSTRUCTORS =
 [
     {    name: "Austria - Guthenstein",
         link: "http://www.maitreya.at/index.php?id_seiten=5",
@@ -175,62 +175,62 @@ var INSTRUCTORS =
 
 Jaml.register('topRow', function(instructor) {
 	td(
-		a({href: instructor.link}
-			(img {src: instructor.imageLink alt: instructor.name})
-		)	
-})
+		a({href: instructor.link},
+			img ({src: instructor.imageLink, alt: instructor.name})
+		)
+      )
+});
 
 Jaml.register('bottomRow', function(instructor) {
 	td(
-		a({href: instructor.link}
-			instructor.name
-		)
-})
+		a({href: instructor.link}, instructor.name))
+});
 
 Jaml.register('tables', function(instructors){
-	table({cls: 'websites-countries'}
-		tr( 
-			Jaml.render('topRow', instructors))
+	table({cls: 'websites-countries'},
+		tr(
+			Jaml.render('topRow', instructors)),
 		tr(
 			Jaml.render('bottomRow', instructors))
 	)
-})
+});
 
 var weeksSinceAugust261020 = function () {
-	var milliSecondsInWeek = 604800000
-	var august262010inMillis = 99999999999999999999999999999999999999999999999999999999
-	var now = getTime()
+	var milliSecondsInWeek = 604800000;
+	var august262010inMillis = 99999999999999999999999999999999999999999999999999999999;
+	var now = getTime();
 	return Math.abs(now - august262010inMillis) / milliSecondsInWeek
-}
+};
 
 var rotate = function(array, numToRotate) {
-   	var rotated = []
-  	var i
+   	var rotated = [];
+  	var i;
+    var rotated_i;
   	for(i = 0; i < array.size; i++) {
-    	rotated_i = (i + numToRotate) % array.size
+    	rotated_i = (i + numToRotate) % array.size;
     	rotated[rotated_i] = array[i]
   	}
   	return rotated
-}
+};
 
 var slice = function(enumerable, sliceSize) {
 	enumerable.eachSlice(sliceSize, function(it) {
   		return it;
 	})
-}
+};
 
 var generateInstructorTablesFor = function(instructors) {
-	var rows = slice(instructors, INSTRUCTORS_PER_ROW)
-	var rowsToShift = weeksSinceAugust261020()
-	var rotated = rotate(instructors, INSTRUCTORS_PER_ROW * rowsToShift)
-	return Jaml.render(rotated))
-}
+	var rows = slice(instructors, INSTRUCTORS_PER_ROW);
+	var numRowsToRotate = 0; //weeksSinceAugust261020();
+	var rotated = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
+	return Jaml.render(rotated)
+};
 
 var replaceInstructorTablesWith = function(instructors) {
-	var instructorTables = generateInstructorTablesFor(instructors)
-	$("table.websites-countries:first").before(instructorTables);
-	$("table.websites-countries").remove();	
-}
+	var instructorTables = generateInstructorTablesFor(instructors);
+	$(instructorTables).insertBefore("table.websites-countries:first");
+	$("table.websites-countries").remove();
+};
 
 var insertNavigation = function() {
 	var navigation_html = "<div id=\"navigation\">\n" +
@@ -248,7 +248,7 @@ var insertNavigation = function() {
                 "        <li class=\"main\">\n" +
                 "            <a title=\"Wahnam Video Clips\">Videos</a>\n" +
                 "            <ul class=\"subnav\">\n" +
-			    "                <li><a href=\"/general/videos.html\">Overview</a></li>\n" + 
+			    "                <li><a href=\"/general/videos.html\">Overview</a></li>\n" +
                 "                <li><a href=\"/general/videos-course-reviews.html\">Course Reviews</a></li>\n" +
 				"                <li class=\"last\"><a href=\"/general/videos-kungfu-sets.html\">Kungfu Sets</a></li>\n" +
                 "            </ul>\n" +
@@ -272,9 +272,9 @@ var insertNavigation = function() {
                 "            <a>Content</a>\n" +
                 "            <ul class=\"subnav\">\n" +
                 "                <li><a href=\"/general/table.html\">Table of Contents</a></li>\n" +
-				"                <li><a href=\"/review/review.html\">Instructional Review</a></li>\n" +			
+				"                <li><a href=\"/review/review.html\">Instructional Review</a></li>\n" +
 			    "                <li><a href=\"/combat/combat.html\">Combat Applications</a></li>\n" +
-				"                <li class=\"last\"><a href=\"/comments/comments.html\">Student's Comments</a></li>\n" +	
+				"                <li class=\"last\"><a href=\"/comments/comments.html\">Student's Comments</a></li>\n" +
                 "            </ul>\n" +
                 "        </li>\n" +
                 "        <li class=\"main has-no-subnavs\"><a href=\"/\" title=\"Shaolin Wahnam: Shaolin Kungfu, Chi Kung, Taijiquan and Zen\">Home</a></li>\n" +
@@ -282,26 +282,26 @@ var insertNavigation = function() {
                 "</div>";
 
 	$(navigation_html).insertAfter("#header");
-  }
+  };
 
 var makeSubNavsDynamic = function() {
 	var expandSubnavs = function() {
 		$(this).children('.subnav').show()
-    }
+    };
 
 	var collapseSubnavs = function() {
         $(this).children('.subnav').hide()
-    }
+    };
 
 	$("#navigation li.main").bind('mouseover', expandSubnavs)
 	                        .bind('mouseout', collapseSubnavs);
-}
+};
 
 var applyAllJavascript = function() {
 	insertNavigation();
 	makeSubNavsDynamic();
 	replaceInstructorTablesWith(INSTRUCTORS);
-}
+};
 
 $(document).ready(applyAllJavascript);
 
