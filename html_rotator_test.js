@@ -203,8 +203,24 @@ var weeksSinceAugust261020 = function () {
 	return Math.abs(now - august262010inMillis) / milliSecondsInWeek
 }
 
+var rotate = function(array, numToRotate) {
+   	var rotated = []
+  	var i
+  	for(i = 0; i < array.size; i++) {
+    	rotated_i = (i + numToRotate) % array.size
+    	rotated[rotated_i] = array[i]
+  	}
+  	return rotated
+}
+
+var slice = function(enumerable, sliceSize) {
+	enumerable.eachSlice(sliceSize, function(it) {
+  		return it;
+	})
+}
+
 var generateInstructorTablesFor = function(instructors) {
-	var rows = partition(instructors, INSTRUCTORS_PER_ROW)
+	var rows = slice(instructors, INSTRUCTORS_PER_ROW)
 	var rowsToShift = weeksSinceAugust261020()
 	var rotated = rotate(instructors, INSTRUCTORS_PER_ROW * rowsToShift)
 	return Jaml.render(rotated))
