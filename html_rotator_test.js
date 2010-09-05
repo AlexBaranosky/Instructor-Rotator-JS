@@ -277,7 +277,7 @@ var rotate = function(arr, numToRotate) {
 
 var generateInstructorTablesFor = function(instructors) {
     var rows = instructors.eachSlice(INSTRUCTORS_PER_ROW);
-    var numRowsToRotate = 0; //weeksSinceAugust261020();
+    var numRowsToRotate = 3; //weeksSinceAugust261020();
     var rotatedInstructors = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
     return Jaml.render('tables', rotatedInstructors)
 };

@@ -3,7 +3,10 @@
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="01783cb0-a81c-4160-81c3-aa8c07898fa6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for-js-rotation.html" afterPath="$PROJECT_DIR$/for-js-rotation.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html_rotator_test.js" afterPath="$PROJECT_DIR$/html_rotator_test.js" />
+      <change type="DELETED" beforePath="C:\Users\Alex and Paula\Documents\Software Projects\InstructorTableRotator_JS\instructorRotator.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Alex and Paula\Documents\Software Projects\InstructorTableRotator_JS\instructors.js" afterPath="" />
     </list>
     <ignored path="InstructorTableRotator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +33,7 @@
       <file leaf-file-name="for-js-rotation.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/for-js-rotation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="95" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.0">
+            <state line="29" column="95" selection-start="1275" selection-end="1275" vertical-scroll-proportion="-0.6818182">
               <folding />
             </state>
           </provider>
@@ -39,7 +42,7 @@
       <file leaf-file-name="html_rotator_test.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html_rotator_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="275" column="2" selection-start="13266" selection-end="13266" vertical-scroll-proportion="0.66627634">
+            <state line="301" column="43" selection-start="14009" selection-end="14009" vertical-scroll-proportion="0.7716628">
               <folding />
             </state>
           </provider>
@@ -87,6 +90,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="InstructorTableRotator_JS" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InstructorTableRotator_JS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InstructorTableRotator_JS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -168,12 +181,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/for-js-rotation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="95" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.0" />
+        <state line="29" column="95" selection-start="1275" selection-end="1275" vertical-scroll-proportion="-0.6818182">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html_rotator_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="275" column="2" selection-start="13266" selection-end="13266" vertical-scroll-proportion="0.66627634">
+        <state line="301" column="43" selection-start="14009" selection-end="14009" vertical-scroll-proportion="0.7716628">
           <folding />
         </state>
       </provider>
