@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="01783cb0-a81c-4160-81c3-aa8c07898fa6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html_rotator_test.js" afterPath="$PROJECT_DIR$/html_rotator_test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html_rotator_test.js" afterPath="$PROJECT_DIR$/html_rotator_test.js" />
     </list>
     <ignored path="InstructorTableRotator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +39,7 @@
       <file leaf-file-name="html_rotator_test.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html_rotator_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="281" column="4" selection-start="13532" selection-end="13532" vertical-scroll-proportion="0.59601873">
+            <state line="275" column="2" selection-start="13266" selection-end="13266" vertical-scroll-proportion="0.66627634">
               <folding />
             </state>
           </provider>
@@ -80,28 +80,18 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="InstructorTableRotator" />
+              <option name="myItemId" value="InstructorTableRotator_JS" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InstructorTableRotator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InstructorTableRotator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Favorites" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="RunManager">
@@ -183,7 +173,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html_rotator_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="281" column="4" selection-start="13532" selection-end="13532" vertical-scroll-proportion="0.59601873">
+        <state line="275" column="2" selection-start="13266" selection-end="13266" vertical-scroll-proportion="0.66627634">
           <folding />
         </state>
       </provider>

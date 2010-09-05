@@ -264,13 +264,13 @@ var weeksSinceAugust261020 = function () {
     return Math.abs(now - august262010inMillis) / milliSecondsInWeek
 };
 
-var rotate = function(array, numToRotate) {
+var rotate = function(arr, numToRotate) {
     var rotated = [];
     var i;
     var rotated_i;
-    for (i = 0; i < array.size; i++) {
-        rotated_i = (i + numToRotate) % array.size;
-        rotated[rotated_i] = array[i]
+    for (i = 0; i < arr.length; i++) {
+        rotated_i = (i + numToRotate) % arr.length;
+        rotated[rotated_i] = arr[i]
     }
     return rotated
 };
