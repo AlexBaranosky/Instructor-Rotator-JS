@@ -296,6 +296,10 @@ var applyAllJavascript = function() {
 
 $(document).ready(applyAllJavascript);
 
+function isEven(val) {  
+			return val % 2 === 0;  
+		}
+
 
 
 
