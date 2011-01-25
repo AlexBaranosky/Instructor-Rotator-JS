@@ -14,3 +14,28 @@
 	same(rotate([1, 2, 3, 4], 3), [4, 1, 2, 3]);
 	same(rotate([1, 2, 3, 4], 4), [1, 2, 3, 4]);
  })
+
+var instructor = { name: "USA", link: "http://flowingzen.com/index.html", imageLink: "/images/home/countries/c-usa01.jpg"};
+
+test('renders top row element as a link with an image in it', function() {
+	var html = 
+"<td>\n\
+  <a href=\"http://flowingzen.com/index.html\">\n\
+    <img src=\"/images/home/countries/c-usa01.jpg\" alt=\"USA\" />\n\
+  </a>\n\
+</td>\n";	
+	same(Jaml.render('topRow', instructor), html);
+ })
+
+test('renders bottom row element as link with text of the instructors name', function() {
+	var html = 
+"<td>\n\
+  <a href=\"http://flowingzen.com/index.html\">USA</a>\n\
+</td>\n";	
+	same(Jaml.render('bottomRow', instructor), html);
+ })
+ 
+ test('test template', function() {
+ 
+ })
+ 
