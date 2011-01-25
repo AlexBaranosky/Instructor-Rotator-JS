@@ -1,4 +1,4 @@
-var insertNavigation = function() {
+function insertNavigation() {
     var navigation_html = "<div id=\"navigation\">\n" +
                           "    <ul>\n" +
                           "        <li class=\"main has-no-subnavs last\"><a href=\"/general/healers-list.html\" title=\"Shaolin Wahnam Chi Kung Healers\">Healers</a></li>\n" +
@@ -50,7 +50,7 @@ var insertNavigation = function() {
     $(navigation_html).insertAfter("#header");
 };
 
-var makeSubNavsDynamic = function() {
+function makeSubNavsDynamic() {
     var expandSubnavs = function() {
         $(this).children('.subnav').show()
     };
@@ -257,38 +257,38 @@ Jaml.register('tables', function(instructors) {
             tr(Jaml.render('bottomRow', instructors)))
 });
 
-var weeksSinceAugust261020 = function () {
+function weeksSinceAugust262010() {
     var milliSecondsInWeek = 604800000;
     var august262010inMillis = 9;
     var now = getTime();
     return Math.abs(now - august262010inMillis) / milliSecondsInWeek
 };
 
-var rotate = function(arr, numToRotate) {
+function rotate(arr, numToRotate) {
     var rotated = [];
     var i;
     var rotated_i;
     for (i = 0; i < arr.length; i++) {
         rotated_i = (i + numToRotate) % arr.length;
-        rotated[rotated_i] = arr[i]
+        rotated[rotated_i] = arr[i];
     }
-    return rotated
+    return rotated;
 };
 
-var generateInstructorTablesFor = function(instructors) {
+function generateInstructorTablesFor(instructors) {
     var rows = instructors.eachSlice(INSTRUCTORS_PER_ROW);
-    var numRowsToRotate = 3; //weeksSinceAugust261020();
+    var numRowsToRotate = 3; //weeksSinceAugust262010();
     var rotatedInstructors = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
     return Jaml.render('tables', rotatedInstructors)
 };
 
-var replaceInstructorTablesWith = function(instructors) {
+function replaceInstructorTablesWith(instructors) {
     var instructorTables = generateInstructorTablesFor(instructors);
     $(instructorTables).insertBefore("table.websites-countries:first");
     $("table.websites-countries").remove();
 };
 
-var applyAllJavascript = function() {
+function applyAllJavascript() {
     insertNavigation();
     makeSubNavsDynamic();
     replaceInstructorTablesWith(INSTRUCTORS);
