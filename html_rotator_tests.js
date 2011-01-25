@@ -35,6 +35,52 @@ test('renders bottom row element as link with text of the instructors name', fun
 	same(Jaml.render('bottomRow', instructor), html);
  })
  
+ test('tables render right with one instructor', function() {
+	var html = 
+"<table class=\"websites-countries\">\n\
+  <tr><td>\n\
+  <a href=\"http://flowingzen.com/index.html\">\n\
+    <img src=\"/images/home/countries/c-usa01.jpg\" alt=\"USA\" />\n\
+  </a>\n\
+</td>\n\
+</tr>\n\
+  <tr><td>\n\
+  <a href=\"http://flowingzen.com/index.html\">USA</a>\n\
+</td>\n\
+</tr>\n\
+</table>\n";	
+	same(Jaml.render('tables', [instructor]), html);
+ })
+ 
+ test('tables render right with two instructors', function() {
+	var html = 
+"<table class=\"websites-countries\">\n\
+  <tr><td>\n\
+  <a href=\"http://flowingzen.com/index.html\">\n\
+    <img src=\"/images/home/countries/c-usa01.jpg\" alt=\"USA\" />\n\
+  </a>\n\
+</td>\n\
+</tr>\n\
+  <tr><td>\n\
+  <a href=\"http://flowingzen.com/index.html\">USA</a>\n\
+</td>\n\
+</tr>\n\
+</table>\n\
+<table class=\"websites-countries\">\n\
+  <tr><td>\n\
+  <a href=\"http://flowingzen.com/index.html\">\n\
+    <img src=\"/images/home/countries/c-usa01.jpg\" alt=\"USA\" />\n\
+  </a>\n\
+</td>\n\
+</tr>\n\
+  <tr><td>\n\
+  <a href=\"http://flowingzen.com/index.html\">USA</a>\n\
+</td>\n\
+</tr>\n\
+</table>\n";	
+	same(Jaml.render('tables', [instructor, instructor]), html);
+ })
+ 
  test('test template', function() {
  
  })
