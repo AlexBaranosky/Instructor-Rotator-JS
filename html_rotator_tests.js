@@ -3,6 +3,10 @@
 	equals(INSTRUCTORS_PER_ROW, 4);
  })
  
+ test('', function() {
+	equals([1, 2, 3, 4].eachSlice(2), [[1, 2], [3, 4]]);
+ })
+ 
  test('can rotate an array', function() {
 	equals(rotate([1, 2, 3], 1), [2, 3, 1] );
 	equals(rotate([1, 2, 3, 4], 0), [1, 2, 3, 4] );

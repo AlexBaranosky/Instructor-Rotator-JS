@@ -1,3 +1,5 @@
+
+
 function insertNavigation() {
     var navigation_html = "<div id=\"navigation\">\n" +
                           "    <ul>\n" +
