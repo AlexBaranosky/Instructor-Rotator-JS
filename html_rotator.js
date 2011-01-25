@@ -267,10 +267,10 @@ function weeksSinceAugust262010() {
 function rotate(arr, numToRotate) {
     var rotated = [];
     var i;
-    var rotated_i;
-    for (i = 0; i < arr.length; i++) {
-        rotated_i = (i + numToRotate) % arr.length;
-        rotated[rotated_i] = arr[i];
+	var len = arr.length;
+    for (i = 0; i < len; i++) {
+        var rotated_i = (i + numToRotate) % len;
+        rotated[i] = arr[rotated_i];
     }
     return rotated;
 };
@@ -295,13 +295,6 @@ function applyAllJavascript() {
 };
 
 $(document).ready(applyAllJavascript);
-
-function isEven(val) {  
-			return val % 2 === 0;  
-		}
-
-
-
 
 
 
