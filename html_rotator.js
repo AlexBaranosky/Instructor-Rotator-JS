@@ -253,7 +253,6 @@ function renderBottomRowCell(instructor) {
 }
 
 function renderTable(instructors) {
-
     var topRow = instructors.inject("", function(cells, instructor) {
         return cells + renderTopRowCell(instructor)
     });
@@ -289,8 +288,8 @@ function generateInstructorTablesFor(instructors, numRowsToRotate) {
     var rows = instructors.eachSlice(INSTRUCTORS_PER_ROW);
     var rotatedRows = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
 
-    return rotatedRows.inject("", function(acc, row) {
-        return acc + renderTable(row);
+    return rotatedRows.inject("", function(tables, row) {
+        return tables + renderTable(row);
     });
 }
 
