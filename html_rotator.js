@@ -48,7 +48,7 @@ function insertNavigation() {
                           "</div>";
 
     $(navigation_html).insertAfter("#header");
-};
+}
 
 function makeSubNavsDynamic() {
     var expandSubnavs = function() {
@@ -61,7 +61,7 @@ function makeSubNavsDynamic() {
 
     $("#navigation li.main").bind('mouseover', expandSubnavs)
             .bind('mouseout', collapseSubnavs);
-};
+}
 
 var INSTRUCTORS_PER_ROW = 4;
 
@@ -238,64 +238,87 @@ var INSTRUCTORS =
             }
         ];
 
-Jaml.register('topRow', function(instructor) {
-    td(
-            a({href: instructor.link},
-                    img({src: instructor.imageLink, alt: instructor.name})
-                    )
-            )
-});
+function renderTopRowCell(instructor) {
+	return "<td>\n\
+  <a href=\"" + instructor.link + "\">\n\
+    <img src=\"" + instructor.imageLink + "\" alt=\"" + instructor.name + "\" />\n\
+  </a>\n\
+</td>\n";
+}
 
-Jaml.register('bottomRow', function(instructor) {
-    td(
-            a({href: instructor.link}, instructor.name))
-});
+function renderBottomRowCell(instructor) {
+	return "<td>\n\
+  <a href=\""+ instructor.link + "\">" + instructor.name + "</a>\n\
+</td>\n";
+}
 
 Jaml.register('tables', function(instructors) {
+    var topRow = instructors.inject("", function(acc, intructor) {
+        return acc + renderTopRowCell(instructor)
+    });
+    var bottomRow = instructors.inject("", function(acc, intructor) {
+        return acc + renderBottomRowCell(instructor)
+    });
+
     table({cls: 'websites-countries'},
-            tr(Jaml.render('topRow', instructors)),
-            tr(Jaml.render('bottomRow', instructors)))
+            tr(topRow),
+            tr(bottomRow));
 });
+
+function renderTable(instructors) {
+	var topRow = instructors.inject("", function(acc, intructor) {
+        return acc + renderTopRowCell(instructor)
+    });
+    var bottomRow = instructors.inject("", function(acc, intructor) {
+        return acc + renderBottomRowCell(instructor)
+    });
+	
+	return "<table class=\"websites-countries\">\n" +
+		"<tr>" + topRow + "</tr>\n" +
+		"<tr>" + bottomRow + "</tr>\n" +
+	"</table>\n";
+}
 
 function weeksSinceAugust262010() {
     var milliSecondsInWeek = 604800000;
     var august262010inMillis = 9;
     var now = getTime();
     return Math.abs(now - august262010inMillis) / milliSecondsInWeek
-};
+}
 
 function rotate(arr, numToRotate) {
     var rotated = [];
     var i;
-	var len = arr.length;
-    for (i = 0; i < len; i++) {
-        var rotated_i = (i + numToRotate) % len;
+    for (i = 0; i < arr.length; i++) {
+        var rotated_i = (i + numToRotate) % arr.length;
         rotated[i] = arr[rotated_i];
     }
     return rotated;
-};
+}
 
 function generateInstructorTablesFor(instructors) {
     var rows = instructors.eachSlice(INSTRUCTORS_PER_ROW);
-    var numRowsToRotate = 3; //weeksSinceAugust262010();
-    var rotatedInstructors = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
-    return Jaml.render('tables', rotatedInstructors)
-};
+    var numRowsToRotate = 1; //weeksSinceAugust262010();
+    var rotatedRows = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
+
+    return rotatedRows.inject("", function(acc, rowOfInstructors) {
+        return acc + renderTable(rowOfInstructors);   
+    });
+}
 
 function replaceInstructorTablesWith(instructors) {
     var instructorTables = generateInstructorTablesFor(instructors);
     $(instructorTables).insertBefore("table.websites-countries:first");
     $("table.websites-countries").remove();
-};
+}
 
 function applyAllJavascript() {
     insertNavigation();
     makeSubNavsDynamic();
     replaceInstructorTablesWith(INSTRUCTORS);
-};
+}
 
 $(document).ready(applyAllJavascript);
-
 
 
 
