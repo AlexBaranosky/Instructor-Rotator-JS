@@ -1,4 +1,4 @@
-function insertNavigation() {
+ function insertNavigation() {
     var navigation_html = "<div id=\"navigation\">\n" +
                           "    <ul>\n" +
                           "        <li class=\"main has-no-subnavs last\"><a href=\"/general/healers-list.html\" title=\"Shaolin Wahnam Chi Kung Healers\">Healers</a></li>\n" +
@@ -251,19 +251,6 @@ function renderBottomRowCell(instructor) {
   <a href=\""+ instructor.link + "\">" + instructor.name + "</a>\n\
 </td>\n";
 }
-
-Jaml.register('tables', function(instructors) {
-    var topRow = instructors.inject("", function(acc, intructor) {
-        return acc + renderTopRowCell(instructor)
-    });
-    var bottomRow = instructors.inject("", function(acc, intructor) {
-        return acc + renderBottomRowCell(instructor)
-    });
-
-    table({cls: 'websites-countries'},
-            tr(topRow),
-            tr(bottomRow));
-});
 
 function renderTable(instructors) {
 	var topRow = instructors.inject("", function(acc, intructor) {

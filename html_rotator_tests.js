@@ -121,7 +121,7 @@ test('renders bottom row element as link with text of the instructors name', fun
  
  test('', function() {
 	var html = "";
-	sameIgnoringWhitespace(generateInstructorTablesFor(instructors), html);
+	same(generateInstructorTablesFor(instructors), html);
  })
  
  test('test template', function() {
