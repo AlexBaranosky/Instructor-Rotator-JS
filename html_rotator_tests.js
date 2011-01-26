@@ -14,6 +14,18 @@
 	same([1, 2, 3, 4].eachSlice(2), [[1, 2], [3, 4]]);
  })
  
+ test('weeks since Jan 1, 2011', function() {
+	same(weeksSinceJan012011(), 4);
+ })
+ 
+ test('week for now', function() {
+	same(getWeek(new Date()), 5);
+ })
+ 
+ test('week for Jan 1 2011', function() {
+	same(getWeek(new Date(2011, 0, 1)), 1);
+ })
+ 
  test('confirming inject works as I expect', function() {
 	same(["a", "b", "c", "d"].inject("", function(acc, letter) { return acc + letter; } ), "abcd");
  })

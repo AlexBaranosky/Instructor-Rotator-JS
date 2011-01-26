@@ -1,5 +1,17 @@
 jQuery.noConflict();
 
+Date.prototype.getWeek = function() {
+    var determinedate = new Date();
+    determinedate.setFullYear(this.getFullYear(), this.getMonth(), this.getDate());
+    var D = determinedate.getDay();
+    if(D == 0) D = 7;
+    determinedate.setDate(determinedate.getDate() + (4 - D));
+    var YN = determinedate.getFullYear();
+    var ZBDoCY = Math.floor((determinedate.getTime() - new Date(YN, 0, 1, -6)) / 86400000);
+    var WN = 1 + Math.floor(ZBDoCY / 7);
+    return WN;
+}
+
 function insertNavigation() {
     var navigation_html = "<div id=\"navigation\">\n" +
                           "    <ul>\n" +
@@ -381,20 +393,37 @@ function rotate(arr, numToRotate) {
 }
 
 function generateInstructorTablesFor(instructors, numRowsToRotate) {
-    var rows = instructors.eachSlice(INSTRUCTORS_PER_ROW);
-    var rotatedRows = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
-
-    return rotatedRows.inject("", function(tables, row) {
+    var rotatedInstructors = rotate(instructors, INSTRUCTORS_PER_ROW * numRowsToRotate);
+    var rows = rotatedInstructors.eachSlice(INSTRUCTORS_PER_ROW);
+  
+    return rows.inject("", function(tables, row) {
         return tables + renderTable(row);
     });
 }
 
+function getWeek(date) {
+	var onejan = new Date(date.getFullYear(),0,1);
+	return Math.ceil((((date - onejan) / 86400000) + onejan.getDay()+1)/7);
+}
+
+function weeksSinceJan012011() {
+	var jan012011 = new Date(2011, 0, 1);
+	var janWeek = getWeek(jan012011);
+
+	var today = new Date();
+	var thisWeek = getWeek(today);
+
+	var extraYears = today.getYear() - jan012011.getYear();
+
+    return thisWeek - janWeek + (52 * extraYears);
+}
+
 function replaceInstructorTablesWith(instructors) {
-    var instructorTables = generateInstructorTablesFor(instructors, 0); //weeksSinceAugust262010();
+    var instructorTables = generateInstructorTablesFor(instructors, weeksSinceJan012011());
     jQuery("#instructor-websites").after("<div>" + instructorTables + "</div>").remove();
 }
 
-var applyAllJavascript = function() {
+function applyAllJavascript() {
     insertNavigation();
     makeSubNavsDynamic();
     showRandomQuote();
@@ -402,13 +431,4 @@ var applyAllJavascript = function() {
 }
 
 jQuery(document).ready(applyAllJavascript);
-
-
-
-
-
-
-
-
-
 
