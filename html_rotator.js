@@ -1,4 +1,4 @@
- function insertNavigation() {
+function insertNavigation() {
     var navigation_html = "<div id=\"navigation\">\n" +
                           "    <ul>\n" +
                           "        <li class=\"main has-no-subnavs last\"><a href=\"/general/healers-list.html\" title=\"Shaolin Wahnam Chi Kung Healers\">Healers</a></li>\n" +
@@ -239,31 +239,33 @@ var INSTRUCTORS =
         ];
 
 function renderTopRowCell(instructor) {
-	return "<td>\n\
-  <a href=\"" + instructor.link + "\">\n\
-    <img src=\"" + instructor.imageLink + "\" alt=\"" + instructor.name + "\" />\n\
-  </a>\n\
-</td>\n";
+    return "<td>\n\
+ <a href=\"" + instructor.link + "\">\n\
+   <img src=\"" + instructor.imageLink + "\" alt=\"" + instructor.name + "\" />\n\
+ </a>\n\
+   </td>\n";
 }
 
 function renderBottomRowCell(instructor) {
-	return "<td>\n\
-  <a href=\""+ instructor.link + "\">" + instructor.name + "</a>\n\
-</td>\n";
+    return "<td>\n\
+ <a href=\"" + instructor.link + "\">" + instructor.name + "</a>\n\
+   </td>\n";
 }
 
 function renderTable(instructors) {
-	var topRow = instructors.inject("", function(acc, intructor) {
-        return acc + renderTopRowCell(instructor)
+
+    var topRow = instructors.inject("", function(cells, instructor) {
+        return cells + renderTopRowCell(instructor)
     });
-    var bottomRow = instructors.inject("", function(acc, intructor) {
-        return acc + renderBottomRowCell(instructor)
+
+    var bottomRow = instructors.inject("", function(cells, instructor) {
+        return cells + renderBottomRowCell(instructor)
     });
-	
-	return "<table class=\"websites-countries\">\n" +
-		"<tr>" + topRow + "</tr>\n" +
-		"<tr>" + bottomRow + "</tr>\n" +
-	"</table>\n";
+
+    return "<table class=\"websites-countries\">\n" +
+           "<tr>" + topRow + "</tr>\n" +
+           "<tr>" + bottomRow + "</tr>\n" +
+           "</table>\n";
 }
 
 function weeksSinceAugust262010() {
@@ -283,18 +285,17 @@ function rotate(arr, numToRotate) {
     return rotated;
 }
 
-function generateInstructorTablesFor(instructors) {
+function generateInstructorTablesFor(instructors, numRowsToRotate) {
     var rows = instructors.eachSlice(INSTRUCTORS_PER_ROW);
-    var numRowsToRotate = 1; //weeksSinceAugust262010();
     var rotatedRows = rotate(rows, INSTRUCTORS_PER_ROW * numRowsToRotate);
 
-    return rotatedRows.inject("", function(acc, rowOfInstructors) {
-        return acc + renderTable(rowOfInstructors);   
+    return rotatedRows.inject("", function(acc, row) {
+        return acc + renderTable(row);
     });
 }
 
 function replaceInstructorTablesWith(instructors) {
-    var instructorTables = generateInstructorTablesFor(instructors);
+    var instructorTables = generateInstructorTablesFor(instructors, 0); //weeksSinceAugust262010();
     $(instructorTables).insertBefore("table.websites-countries:first");
     $("table.websites-countries").remove();
 }
@@ -306,10 +307,3 @@ function applyAllJavascript() {
 }
 
 $(document).ready(applyAllJavascript);
-
-
-
-
-
-
-
