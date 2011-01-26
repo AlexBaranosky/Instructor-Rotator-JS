@@ -1,5 +1,4 @@
-function instructors() {
-        return [
+var INSTRUCTORS = [
             {   name: "Austria - Guthenstein",
                 link: "http://www.maitreya.at/index.php?id_seiten=5",
                 imageLink: "/images/home/countries/c-austria02c.jpg"
@@ -169,4 +168,3 @@ function instructors() {
                 imageLink: "/images/home/countries/c-edinburgh03.jpg"
             }
         ];
-	}

@@ -254,7 +254,7 @@ function applyAllJavascript() {
     insertNavigation();
     makeSubNavsDynamic();
     showRandomQuote();
-    replaceInstructorTablesWith(instructors());
+    replaceInstructorTablesWith(INSTRUCTORS);
 }
 
 jQuery(document).ready(applyAllJavascript);
